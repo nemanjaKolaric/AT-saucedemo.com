@@ -1,4 +1,4 @@
-Feature: Shopping functionality 
+Feature: Shopping functionality
 
     Scenario: User is able to successfully buy one item
         When user buy one item
@@ -15,3 +15,7 @@ Feature: Shopping functionality
         Then item is removed
         When user remove item from cart page
         Then item is removed
+
+    Scenario: Total amount of ordered items is correct
+        When user order two items
+        Then total amount is correct

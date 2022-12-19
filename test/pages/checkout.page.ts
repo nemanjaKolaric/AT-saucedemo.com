@@ -29,5 +29,9 @@ class CheckoutPage {
     public get completedOrderMessage(){
         return $('//*[.="THANK YOU FOR YOUR ORDER"]')
     }
+
+    public get totalAmountField(){
+        return $('.summary_total_label')
+    }
 }
 export default new CheckoutPage();
