@@ -1,4 +1,4 @@
-import actions from "../utils/actions"; 
+import actions from "../utils/actions";  
 import { fakeData } from "../test-data/fakeData";
 
 class CheckoutPage {

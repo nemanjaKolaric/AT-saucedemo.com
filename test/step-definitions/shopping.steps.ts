@@ -1,4 +1,4 @@
-import {Then, When } from "@wdio/cucumber-framework"; 
+import {Then, When } from "@wdio/cucumber-framework";  
 import loginPage from "../pages/login.page";
 import homePage from "../pages/home.page";
 import checkoutPage from "../pages/checkout.page";

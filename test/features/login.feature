@@ -1,4 +1,4 @@
-Feature: Login functionality 
+Feature: Login functionality  
 
     Scenario Outline: User is able to login successfully
         When user tries to login with valid username "<username>" and valid pasword "<password>"
