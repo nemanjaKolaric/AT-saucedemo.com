@@ -1,4 +1,4 @@
-import Actions from "../utils/actions";
+import Actions from "../utils/actions"; 
 
 class LoginPage {
     public get username() {
