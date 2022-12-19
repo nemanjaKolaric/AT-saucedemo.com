@@ -1,4 +1,4 @@
-Feature: Shopping functionality
+Feature: Shopping functionality 
 
     Scenario: User is able to successfully buy one item
         When user buy one item
