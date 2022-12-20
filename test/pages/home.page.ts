@@ -22,6 +22,10 @@ class HomePage {
         return $('#logout_sidebar_link')
     }
 
+    public get resetAppStateButton() {
+        return $('#reset_sidebar_link')
+    }
+
     public get addButtonItemBackpack() {
         return $('#add-to-cart-sauce-labs-backpack')
     }
@@ -57,6 +61,12 @@ class HomePage {
     public async logOut() {
         await actions.clickOn(this.menuButton);
         await actions.clickOn(this.logoutButton);
+    }
+
+    public async addBackpackItemAndResetApp() {
+        await actions.clickOn(this.addButtonItemBackpack);
+        await actions.clickOn(this.menuButton);
+        await actions.clickOn(this.resetAppStateButton);
     }
 
     public async buyOneItemBackpack() {
