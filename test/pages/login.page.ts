@@ -1,4 +1,4 @@
-import Actions from "../utils/actions"; 
+import actions from "../utils/actions"; 
 
 class LoginPage {
     public get username() {
@@ -15,9 +15,9 @@ class LoginPage {
 
     public async login(username: string, password: string) {
         await browser.url(`${process.env.SAUCEDEMO_URL}`);
-        await Actions.typeIn(this.username, username);
-        await Actions.typeIn(this.password, password);
-        await Actions.clickOn(this.loginButton);
+        await actions.typeIn(this.username, username);
+        await actions.typeIn(this.password, password);
+        await actions.clickOn(this.loginButton);
     }
 }
 export default new LoginPage();
