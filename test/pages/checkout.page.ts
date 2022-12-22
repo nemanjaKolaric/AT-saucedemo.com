@@ -1,4 +1,4 @@
-import actions from "../utils/actions";
+import actions from "../utils/actions"; 
 import { fakeData } from "../test-data/fakeData";
 
 class CheckoutPage {
@@ -28,6 +28,10 @@ class CheckoutPage {
 
     public get completedOrderMessage(){
         return $('//*[.="THANK YOU FOR YOUR ORDER"]')
+    }
+
+    public get totalAmountField(){
+        return $('.summary_total_label')
     }
 }
 export default new CheckoutPage();

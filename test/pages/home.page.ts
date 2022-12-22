@@ -3,6 +3,8 @@ import { fakeData } from "../test-data/fakeData";
 import checkoutPage from "./checkout.page";
 import itemPage from "./item.page";
 
+export var totalAmount;
+
 class HomePage {
     public get titleProducts() {
         return $('//*[.="Products"]')
@@ -18,6 +20,10 @@ class HomePage {
 
     public get logoutButton() {
         return $('#logout_sidebar_link')
+    }
+
+    public get resetAppStateButton() {
+        return $('#reset_sidebar_link')
     }
 
     public get addButtonItemBackpack() {
@@ -40,17 +46,27 @@ class HomePage {
         return $('.shopping_cart_badge')
     }
 
-    public get goToProductBackpackPage(){
+    public get goToProductBackpackPage() {
         return $('//div[.="Sauce Labs Backpack"]')
     }
 
-    public get itemPriceBackpack(){
+    public get itemPriceBackpack() {
         return $('.inventory_item:nth-child(1) .inventory_item_price')
     }
-    
+
+    public get itemPriceBikeLight() {
+        return $('.inventory_item:nth-child(2) .inventory_item_price')
+    }
+
     public async logOut() {
         await actions.clickOn(this.menuButton);
         await actions.clickOn(this.logoutButton);
+    }
+
+    public async addBackpackItemAndResetApp() {
+        await actions.clickOn(this.addButtonItemBackpack);
+        await actions.clickOn(this.menuButton);
+        await actions.clickOn(this.resetAppStateButton);
     }
 
     public async buyOneItemBackpack() {
@@ -85,6 +101,25 @@ class HomePage {
         await actions.clickOn(this.basketIcon);
         await actions.clickOn(itemPage.removeButton)
 
+    }
+
+    public async buyerOrderTwoItems() {
+        const textItemBackpackPrice = await this.itemPriceBackpack.getText();
+        const textItemBikeLightPrice = await this.itemPriceBikeLight.getText();
+
+        const stringBackpackPrice = textItemBackpackPrice.replace("$", "");
+        const stringBikeLightPrice = textItemBikeLightPrice.replace("$", "");
+
+        totalAmount = ((parseFloat(stringBackpackPrice) + parseFloat(stringBikeLightPrice)) * 1.08).toFixed(2);
+
+        await actions.clickOn(this.addButtonItemBikeLight);
+        await actions.clickOn(this.addButtonItemBackpack);
+        await actions.clickOn(this.basketIcon);
+        await actions.clickOn(checkoutPage.checkoutButton);
+        await actions.typeIn(checkoutPage.firstName, fakeData.firstName);
+        await actions.typeIn(checkoutPage.lastName, fakeData.lastName);
+        await actions.typeIn(checkoutPage.zipPostalCode, fakeData.zipCode);
+        await actions.clickOn(checkoutPage.continueButton);
     }
 }
 export default new HomePage();

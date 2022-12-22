@@ -1,6 +1,6 @@
-import actions from "../utils/actions";
+import actions from "../utils/actions"; 
 
-class itemPage{
+class ItemPage{
 
     public get addToCartButton(){
         return $('#add-to-cart-sauce-labs-backpack')
@@ -10,4 +10,4 @@ class itemPage{
         return $('#remove-sauce-labs-backpack')
     }
 }
-export default new itemPage();
+export default new ItemPage();
