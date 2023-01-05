@@ -69,19 +69,23 @@ class HomePage {
         await actions.clickOn(this.resetAppStateButton);
     }
 
-    public async buyOneItemBackpack() {
-        await actions.clickOn(this.addButtonItemBackpack);
+    public async checkoutProcess(firstName: string, lastName: string, postalCode: string) {
         await actions.clickOn(this.basketIcon);
         await actions.clickOn(checkoutPage.checkoutButton);
-        await actions.typeIn(checkoutPage.firstName, fakeData.firstName);
-        await actions.typeIn(checkoutPage.lastName, fakeData.lastName);
-        await actions.typeIn(checkoutPage.zipPostalCode, fakeData.zipCode);
+        await actions.typeIn(checkoutPage.firstName, firstName);
+        await actions.typeIn(checkoutPage.lastName, lastName);
+        await actions.typeIn(checkoutPage.zipPostalCode, postalCode);
         await actions.clickOn(checkoutPage.continueButton);
+    }
+
+    public async buyOneItemBackpack() {
+        await actions.clickOn(this.addButtonItemBackpack);
+        await this.checkoutProcess(fakeData.firstName,fakeData.lastName,fakeData.postalCode);
         await actions.clickOn(checkoutPage.finishButton);
     }
 
     public async buyTwoItemsBackpackAndBikeLight() {
-        await actions.clickOn(this.addButtonItemBikeLight)
+        await actions.clickOn(this.addButtonItemBikeLight);
         await this.buyOneItemBackpack()
     }
 
@@ -107,19 +111,15 @@ class HomePage {
         const textItemBackpackPrice = await this.itemPriceBackpack.getText();
         const textItemBikeLightPrice = await this.itemPriceBikeLight.getText();
 
-        const stringBackpackPrice = textItemBackpackPrice.replace("$", "");
-        const stringBikeLightPrice = textItemBikeLightPrice.replace("$", "");
+        const backpackPrice = parseFloat(textItemBackpackPrice.replace("$", ""));
+        const bikeLightPrice = parseFloat(textItemBikeLightPrice.replace("$", ""));
 
-        totalAmount = ((parseFloat(stringBackpackPrice) + parseFloat(stringBikeLightPrice)) * 1.08).toFixed(2);
+        totalAmount = ((backpackPrice + bikeLightPrice) * 1.08).toFixed(2);
 
         await actions.clickOn(this.addButtonItemBikeLight);
         await actions.clickOn(this.addButtonItemBackpack);
-        await actions.clickOn(this.basketIcon);
-        await actions.clickOn(checkoutPage.checkoutButton);
-        await actions.typeIn(checkoutPage.firstName, fakeData.firstName);
-        await actions.typeIn(checkoutPage.lastName, fakeData.lastName);
-        await actions.typeIn(checkoutPage.zipPostalCode, fakeData.zipCode);
-        await actions.clickOn(checkoutPage.continueButton);
+        await this.checkoutProcess(fakeData.firstName,fakeData.lastName,fakeData.postalCode)
     }
+
 }
 export default new HomePage();

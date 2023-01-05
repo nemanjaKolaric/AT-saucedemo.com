@@ -12,7 +12,7 @@ Then('user is logged in', async () => {
 });
 
 When('user tries to login with invalid username and invalid password', async () => {
-    await loginPage.login(fakeData.firstName, fakeData.zipCode);
+    await loginPage.login(fakeData.firstName, fakeData.password);
 });
 
 When('user tries to login with invalid username and valid password', async () => {

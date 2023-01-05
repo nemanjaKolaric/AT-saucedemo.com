@@ -26,12 +26,20 @@ class CheckoutPage {
         return $('#finish')
     }
 
+    public get checkoutOverviewTitle(){
+        return $('.title')
+    }
+    
     public get completedOrderMessage(){
         return $('//*[.="THANK YOU FOR YOUR ORDER"]')
     }
 
     public get totalAmountField(){
         return $('.summary_total_label')
+    }
+
+    public get errorMessage(){
+        return $('.error-message-container')
     }
 }
 export default new CheckoutPage();
