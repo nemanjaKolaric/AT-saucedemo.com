@@ -18,6 +18,14 @@ class HomePage {
         return $('.bm-burger-button')
     }
 
+    public get allItemsLink() {
+        return $('#inventory_sidebar_link')
+    }
+
+    public get aboutLink() {
+        return $('#about_sidebar_link')
+    }
+
     public get logoutButton() {
         return $('#logout_sidebar_link')
     }
@@ -61,6 +69,17 @@ class HomePage {
     public async logOut() {
         await actions.clickOn(this.menuButton);
         await actions.clickOn(this.logoutButton);
+    }
+
+    public async aboutLinkClick() {
+        await actions.clickOn(this.menuButton);
+        await actions.clickOn(this.aboutLink);
+    }
+
+    public async allItemslinkClick(){
+        await actions.clickOn(this.basketIcon)
+        await actions.clickOn(this.menuButton)
+        await actions.clickOn(this.allItemsLink)
     }
 
     public async addBackpackItemAndResetApp() {
